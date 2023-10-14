@@ -1,3 +1,27 @@
+public class GameController : Controller
+{
+    private GameModel _gameModel;
+
+    public GameController()
+    {
+        _gameModel = new GameModel();
+    }
+
+    public IActionResult Index()
+    {
+        return View(_gameModel.Board);
+    }
+
+    [HttpPost]
+    public IActionResult MakeMove(int row, int col)
+    {
+        bool isValidMove = _gameModel.MakeMove(row, col);
+        return Json(new { isValidMove = isValidMove, currentPlayer = _gameModel.CurrentPlayer });
+    }
+}
+
+
+
 public class GameModel
 {
     public char[,] Board { get; private set; }
