@@ -1,3 +1,22 @@
+@model char[,]
+
+@{
+    for (int i = 0; i < 3; i++)
+    {
+        <div class="row">
+            @{
+                for (int j = 0; j < 3; j++)
+                {
+                    <div class="col">@Model[i, j]</div>
+                }
+            }
+        </div>
+    }
+}
+
+
+
+
 public class GameController : Controller
 {
     private GameModel _gameModel;
